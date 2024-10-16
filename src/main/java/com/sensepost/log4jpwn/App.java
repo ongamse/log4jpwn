@@ -12,7 +12,7 @@ public class App {
 
         port(8080);
 
-(req, res) -> {
+get("/*", (req, res) -> {
     String ua = req.headers("User-Agent");
     String pwn = req.queryParams("pwn");
     String pth = req.pathInfo();

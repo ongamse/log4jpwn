@@ -13,17 +13,35 @@ public class App {
         port(8080);
 
 (req, res) -> {
-
     String ua = req.headers("User-Agent");
     String pwn = req.queryParams("pwn");
     String pth = req.pathInfo();
 
-    logger.error("logging ua: " + ua);
-    logger.error("logging pwn: " + pwn);
-    logger.error("logging pth: " + pth);
+    // Logging ua:
+    if (ua != null) {
+        logger.error("logging ua: " + Encode.forHtml(ua));
+    } else {
+        logger.error("logging ua: null");
+    }
 
-    return "ok: ua: " + ua + " " + "pwn: " + pwn + " pth:" + pth;
+    // Logging pwn:
+    if (pwn != null) {
+        logger.error("logging pwn: " + Encode.forHtml(pwn));
+    } else {
+        logger.error("logging pwn: null");
+    }
+
+    // Logging pth:
+    if (pth != null) {
+        logger.error("logging pth: " + Encode.forHtml(pth));
+    } else {
+        logger.error("logging pth: null");
+    }
+
+    return "ok: ua: " + Encode.forHtml(ua) + " " + "pwn: " + Encode.forHtml(pwn) + " pth:" + Encode.forHtml(pth);
 }
+
+
 
 
 

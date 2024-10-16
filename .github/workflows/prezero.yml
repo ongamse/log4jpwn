@@ -33,7 +33,7 @@ jobs:
       run: mvn clean compile assembly:single 
 
     - name: NextGen Static Analysis
-      run: ${GITHUB_WORKSPACE}/sl analyze --app QwietAI-log4j-pwn --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" .
+      run: ${GITHUB_WORKSPACE}/sl analyze --app QwietAI-log4j-pwnjava --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --javasrc .
 
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}

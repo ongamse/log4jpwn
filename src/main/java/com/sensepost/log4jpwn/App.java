@@ -12,21 +12,21 @@ public class App {
 
         port(8080);
 
-        get("/*", (req, res) -> {
-            String ua = req.headers("User-Agent");
-            String pwn = req.queryParams("pwn");
-            String pth = req.pathInfo();
+(req, res) -> {
+        String ua = req.request().headers("User-Agent");
+        String pwn = req.queryParams("pwn");
+        String pth = req.pathInfo();
 
-    // Use a logging framework that supports masking or encryption
-            Logger logger = LogManager.getLogger(App.class);
-            logger.error("User-Agent: {}", ua);
-            logger.error("pwn: {}", pwn);
-            logger.error("pth: {}", pth);
+// Use a logging framework that supports masking or encryption
+        Logger logger = LogManager.getLogger(App.class);
+        logger.error("User-Agent: {}, pwn: {}, pth: {}", ua, pwn, pth);
 
-            return "ok: ua: " + ua + " " + "pwn: " + pwn + " pth:" + pth;
-        });
+        return "ok: ua: " + ua + " " + "pwn: " + pwn + " pth:" + pth;
+    }
+
 
     }
 }
+
 
 

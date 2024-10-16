@@ -12,22 +12,22 @@ public class App {
 
         port(8080);
 
-        get("/*", (req, res) -> {
+(req, res) -> {
+    String ua = req.headers("User-Agent");
+    String pwn = req.queryParams("pwn");
+    String pth = req.pathInfo();
 
-            String ua = req.headers("User-Agent");
-            String pwn = req.queryParams("pwn");
-            String pth = req.pathInfo();
+    Logger logger = LogManager.getLogger(App.class);
+    logger.error("User-Agent: {}, pwn: {}, pth: {}", Masker.mask(ua), Masker.mask(pwn), Masker.mask(pth));
 
-            System.out.println("logging ua: " + ua);
-            System.out.println("logging pwn: " + pwn);
-            System.out.println("logging pth: " + pth);
+    return "ok: ua: " + Masker.mask(ua) + " " + "pwn: " + Masker.mask(pwn) + " pth:" + Masker.mask(pth);
+}
 
-            // trigger
-            logger.error(ua);
-            logger.error(pwn);
-            logger.error(pth);
 
-            return "ok: ua: " + ua + " " + "pwn: " + pwn + " pth:" + pth;
-        });
+
     }
 }
+
+
+
+

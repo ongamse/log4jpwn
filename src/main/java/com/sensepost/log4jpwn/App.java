@@ -13,22 +13,21 @@ public class App {
         port(8080);
 
 (req, res) -> {
-    String ua = StringUtils.defaultString(req.headers("User-Agent"));
-    String pwn = StringUtils.defaultString(req.queryParams("pwn"));
-    String pth = StringUtils.defaultString(req.pathInfo());
+    String ua = req.headers("User-Agent");
+    String pwn = req.queryParams("pwn");
+    String pth = req.pathInfo();
 
-    System.out.println("logging ua: " + ua);
-    System.out.println("logging pwn: " + pwn);
-    System.out.println("logging pth: " + pth);
-
-    // trigger
-    logger.error(ua);
-    logger.error(pwn);
-    logger.error(pth);
+    // Use a logging framework that supports masking or encryption
+    Logger logger = LogManager.getLogger(App.class);
+    logger.error("User-Agent: {}", ua);
+    logger.error("pwn: {}", pwn);
+    logger.error("pth: {}", pth);
 
     return "ok: ua: " + ua + " " + "pwn: " + pwn + " pth:" + pth;
 }
 
+
     }
 }
+
 

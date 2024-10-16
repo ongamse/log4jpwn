@@ -76,7 +76,7 @@ def make_request(args, payload):
 
     if args.payload_all or args.payload_path:
         print(f' i| setting payload as part of the uri path')
-        target = urljoin(target, urlencode(payload))
+        target = urljoin(target, payload)
 
     # fire ze lazor
     print(f' i| sending exploit payload {payload} to {target}')
@@ -89,6 +89,7 @@ def make_request(args, payload):
             print(f' i| response: {r.text}')
     except Exception as e:
         print(f' e| failed to make request: {e}')
+
 
 
 
@@ -156,5 +157,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
